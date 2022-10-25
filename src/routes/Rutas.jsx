@@ -9,7 +9,9 @@ import {
 import Home from '../views/home/Home';
 import Info from '../views/informacion/Info';
 import Login from '../views/login/Login'; 
-import Admin from '../views/panel/Admi';
+import Panel from '../views/panel/Panel';
+import List from "../views/tabla/List";
+
 
 
 export default function Rutas  ()  {
@@ -19,9 +21,22 @@ export default function Rutas  ()  {
       
         <Routes>
           <Route exact path="/Informacion" element={<Info/>}/>
-          <Route exact path="/Panel" element={<Admin/>}/>
+          <Route exact path="/Panel" element={<Panel/>}/>
           <Route exact path="/Iniciosesion" element={<Login/>}/> 
           <Route exact path="/" element={<Home/>}/>
+          
+          <Route path="users">
+              <Route index element={<List />} />
+              {/* <Route path=":userId" element={<Single />} /> */}
+              
+            </Route>
+
+          <Route path="/products">
+              <Route index element={<List />} />
+             {/*  <Route path=":productId" element={<Single />} /> */}
+              
+            </Route>
+
         </Routes>
      
     </Router>

@@ -14,6 +14,12 @@ import AlertTitle from '@mui/material/AlertTitle'
 import Collapse from '@mui/material/Collapse'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+
+//REDUX
+import { useDispatch } from 'react-redux';
+import { connect } from 'react-redux'
+import { fetchUsuario } from "../../redux/actions/login";
+
 import shortid from "shortid";
 
 function Copyright(props) {
@@ -31,66 +37,58 @@ function Copyright(props) {
 {/* axxx */}
 const theme = createTheme();
 
-export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+
+//LOGIN
+const Login = ({fetchUsuario, error, data}) => {
+
+
+
+//REDUX
+
+
 
 
   /* CARGAR DATOS */
 
 
-  const [usuario, setUsuario] = useState('')
-  const [contrasenia, setContrasenia] = useState('')
+
+  const [email, setUsuario] = useState('')
   const[errorMessage, setErrorMessage] = useState (null)
  
-  const iniciarSesion ={
-    id: shortid.generate(),
-       users: usuario,
-       password:contrasenia
-   }
 
-   const usersAdmin ={
-    id: shortid.generate(),
-       userAdmin: "ari",
-       passwordAdmin:"ari123",
+
+
+ 
+ 
+   const enviarUsuario =async (e) => {
     
-   }
-  
-   
-   const guardarTarea = (e) => {
     e.preventDefault()
 
-
-
-   	
-
-		  setUsuario([...usuario,  iniciarSesion])
-    setContrasenia([...contrasenia,  iniciarSesion])
-  
-    console.log(iniciarSesion)
-    console.log(usersAdmin.userAdmin)
-    console.log(usuario)
-    usersAdmin.userAdmin===usuario && usersAdmin.passwordAdmin===contrasenia 
-    ?
-    window.location.href= `/Panel`
-    :
-    setErrorMessage('Usuario o Contraseña incorrecta')
-    setTimeout(() => {
-        setErrorMessage(null)
-    }, 3000)
-    console.log("Error",e)
-
-	
   
 
+  
+    fetchUsuario(email)
+
+    
+
+  
+    let filteredUsers = data.filter(datas => {
+      
+      return datas.email === email 
+  });
+
+  if (filteredUsers.length === 0) {
+    
+    return console.log("error")
+  }
+
+    console.log(filteredUsers)
+ 
+     console.log("entro")
+     window.location.href= `/Panel`
    } 
 
+  
 
 
   return (
@@ -130,7 +128,8 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form"  sx={{ mt: 1 }}>
+              
               <TextField
                 margin="normal"
                 required
@@ -139,35 +138,26 @@ export default function Login() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={(event) => setUsuario(event.target.value)}
+                onChange={(e)=>setUsuario(e.target.value)}
                 autoFocus
               />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={(event) => setContrasenia(event.target.value)}
-              />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
+      
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={guardarTarea}
+                onClick={enviarUsuario}
               >
                 Sign In
               </Button>
               <br/>
-              <p style={{color:"red"}}>{errorMessage}</p>
+
+              {error !== '' && <span className='text-danger'>error</span>}
+
+
+           {/*    <p style={{color:"red"}}>{errorMessage}</p> */}
               
 					
 
@@ -179,3 +169,14 @@ export default function Login() {
     </ThemeProvider>
   );
 }
+
+
+//SACAR DEL ESTADO 
+const mapStateToProps = state => ({
+  error: state.buscadorUsuario.error,
+  data: state.buscadorUsuario.data
+})
+
+//{login} LO PASAMOS ARRIBA 
+//connect ES EL QUE SE ENCARGA DE CONECTAR LAS ACCIONES CON EL COMPONENTE 
+export default connect(mapStateToProps, { fetchUsuario })(Login)

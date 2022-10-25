@@ -1,14 +1,22 @@
-import { useState } from 'react'
-
 
 import Rutas from "./routes/Rutas";
+
+//redux import
+import { Provider } from 'react-redux'
+import store from './redux/store/store'
+//
 
 function App() {
 
 
   return (
     <>
-   <Rutas/>
+    <Provider  store={store}>
+
+    <Rutas/>
+
+    </Provider>
+   
     </>
     
   )
