@@ -1,19 +1,18 @@
 import  React, { useEffect, useState } from "react";
-import Avatar from '@mui/material/Avatar';
+
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+
 import Typography from '@mui/material/Typography';
-import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
-import Collapse from '@mui/material/Collapse'
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import "./login.css";
+
+import { useForm } from '../../components/hooks/useForm';
 
 //REDUX
 import { useDispatch } from 'react-redux';
@@ -39,7 +38,7 @@ const theme = createTheme();
 
 
 //LOGIN
-const Login = ({fetchUsuario, error, data}) => {
+const Login = ({fetchUsuario }) => {
 
 
 
@@ -52,128 +51,146 @@ const Login = ({fetchUsuario, error, data}) => {
 
 
 
-  const [email, setUsuario] = useState('')
+  //const [email, setUsuario] = useState('')
   const[errorMessage, setErrorMessage] = useState (null)
- 
+
+  const [ formLoginValues, handleLoginInputChange ] = useForm({
+    lEmail: '',
+    lPassword:'',
+});
+  
+const { lEmail,lPassword } = formLoginValues;
+
+const handleLogin = ( e ) => {
+  e.preventDefault();
+  fetchUsuario(lEmail,lPassword);
+
+  console.log(lEmail)
+  console.log(lPassword)
+}
 
 
 
- 
- 
-   const enviarUsuario =async (e) => {
+  /*  const enviarUsuario =async (e) => {
     
+
     e.preventDefault()
 
-  
 
-  
-    fetchUsuario(email)
-
+   
     
-
+   console.log("Login",data)
+   console.log("Login",fetchUsuario)
   
-    let filteredUsers = data.filter(datas => {
+    let filteredUsers =  data.filter(datas => {
       
       return datas.email === email 
   });
 
+   fetchUsuario(email)
+  console.log(filteredUsers)
+  console.log("entro")
+
+
   if (filteredUsers.length === 0) {
     
-    return console.log("error")
+    setErrorMessage('Usuario o Contraseña incorrecta')
+			setTimeout(() => {
+					setErrorMessage(null)
+			}, 3000)
+		
   }
 
-    console.log(filteredUsers)
+   
  
-     console.log("entro")
-     window.location.href= `/Panel`
+     
+    // window.location.href= `/Panel`
    } 
-
+ */
   
 
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: '100vh' }}>
-        <CssBaseline />
+
+<div class="container-fluid2 ps-md-0">
+  <div class="row g-0">
+    <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+    <div class="col-md-8 col-lg-6">
+      <div class="login d-flex align-items-center py-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-lg-8 mx-auto">
+              <h3 class="login-heading mb-2">BIENVENIDO</h3>
+            <hr /><br />
+
+              <form onSubmit={ handleLogin } >
+                <div class="form-floating mb-3">
+
+                <input 
+                                type="text"
+                                className="form-control"
+                                placeholder="Correo"
+                                name="lEmail"
+                                value={ lEmail }
+                                onChange={ handleLoginInputChange }
+                            />
 
 
-        {/*  Imagen del LOGIN  */}
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage: 'url(https://scontent.ffma3-1.fna.fbcdn.net/v/t39.30808-6/301177745_380791927563169_4358606101356264775_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=4QPPdw-6PCMAX_wUPYV&tn=ViPpngCOQDQaiwnv&_nc_ht=scontent.ffma3-1.fna&oh=00_AT-HJpkU1fsLveoTfI9rfyfW_hPereTALdJa7x_AnULYcQ&oe=63334D03)',
-            backgroundRepeat: 'no-repeat',
-            backgroundColor: (t) =>
-              t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+                     
+                            <input
+                                type="password"
+                                className="form-control"
+                                placeholder="Contraseña"
+                                name="lPassword"
+                                value={ lPassword }
+                                onChange={ handleLoginInputChange }
+                            />
+                        
+                 
+                </div>
+                
 
-        <Grid item xs={12} sm={8} md={5}  elevation={6} square>
-          <Box
-            sx={{
-              my: 8,
-              mx: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            <Avatar sx={{ m: 1, bgcolor: 'blue'  }}/>
-          
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <Box component="form"  sx={{ mt: 1 }}>
-              
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={(e)=>setUsuario(e.target.value)}
-                autoFocus
-              />
-      
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck"/>
+                  <label class="form-check-label" for="rememberPasswordCheck" >
+                    Remember password
+                  </label>
+                </div>
+                <br />
+                <div class="d-grid">
 
-              <Button
+                <Button
                 type="submit"
                 fullWidth
                 variant="contained"
+                
                 sx={{ mt: 3, mb: 2 }}
-                onClick={enviarUsuario}
+               
               >
                 Sign In
               </Button>
-              <br/>
+                 
+                </div>
 
-              {error !== '' && <span className='text-danger'>error</span>}
+                <p style={{color:"red"}}>{errorMessage}</p>
 
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-           {/*    <p style={{color:"red"}}>{errorMessage}</p> */}
-              
-					
-
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
-    </ThemeProvider>
+   
   );
 }
 
 
 //SACAR DEL ESTADO 
 const mapStateToProps = state => ({
-  error: state.buscadorUsuario.error,
+  
   data: state.buscadorUsuario.data
 })
 

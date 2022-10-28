@@ -3,6 +3,7 @@ import {
   FETCH_USUARIO_REQUEST,
   FETCH_USUARIO_SUCCESS,
   FETCH_USUARIO_ERROR,
+  CLEAR_STATE
   
   
 } from "../tipos/types";
@@ -39,6 +40,15 @@ export default function(state = INITIAL_STATE, action){
         
         loading:false,
         data:action.payload,
+        error:'',
+        
+      };
+      case CLEAR_STATE:
+        
+      return {
+        
+        loading:false,
+        data:[],
         error:'',
         
       };

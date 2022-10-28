@@ -1,10 +1,11 @@
-import axios from 'axios'
+
+import { fetchSinToken} from '../../helpers/fetch';
 
 import {
   FETCH_USUARIO_REQUEST,
   FETCH_USUARIO_SUCCESS,
   FETCH_USUARIO_ERROR,
-  FETCH_CLEAR_STATE
+ 
 
 } from "../tipos/types";
 
@@ -47,42 +48,40 @@ export const fetchUsuarioError = (error) => {
 
 }
 
-export const fetchUsuario = () => async dispatch => {
 
+
+
+export const fetchUsuario = (email) => {
+
+
+return async( dispatch ) => {
+
+  const resp = await fetchSinToken( 'auth', { email}, 'POST' );
+  const body = await resp.json();
+
+console.log(body)
+
+  if( body.ok ) {
+      localStorage.setItem('token', body.token );
+      localStorage.setItem('token-init-date', new Date().getTime() );
+      window.location.href= `/Panel`
+      dispatch( fetchUsuarioSuccess({
+          uid: body.uid,
+          email: body.email
+      }) )
+  } else {
+     
+    return Swal.fire({position: 'center',icon: 'error',title: "error, revise los datos ingresados",showConfirmButton: false,timer: 1000
+    })
+
+
+
+  }
   
-//procesar info
 
-    dispatch(fetchUsuarioRequest())
+}
 
-   
 
-    const res = await axios.get(`https://jsonplaceholder.typicode.com/users`)
-
-    console.log("RES",res.data)
-    //const res = await axios.get(`https://jsonplaceholder.typicode.com/users?email=${valor}`)
-    res.data.length != 0 && console.log('hay data')
-
-    //console.log(res.data, 'hola')
-
-    //console.log(res.data.length, 'lenght')
-
-    if (res.data.length === 0) {
-
-//mandar error
-      return dispatch(fetchUsuarioError('No se encontro el email'))
-      
-      //dispatch(fetchUsuarioError(true))
-      
-
-    
-    }
-
-    
-
-//traer info si todo esta bien
-    dispatch(fetchUsuarioSuccess(res.data))
-
-  
 }
 
 export default fetchUsuario;

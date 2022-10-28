@@ -6,7 +6,7 @@ import KeyboardArrowUpOutlinedIcon from "@mui/icons-material/KeyboardArrowUpOutl
 
 const Featured = () => {
   return (
-    <div className="featured card border-info">
+    <div className="featured card border-info" style={{ backgroundColor: "#F6F4EF" }}>
       <div className="top">
         <h1 className="title">Total Revenue</h1>
         <MoreVertIcon fontSize="small" />
