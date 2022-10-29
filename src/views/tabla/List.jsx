@@ -2,6 +2,11 @@ import "./list.scss"
 import Sidebar from "../../components/navbars/Navhorizontal"
 import { MDBBadge, MDBBtn, MDBTable, MDBTableHead, MDBTableBody} from 'mdb-react-ui-kit';
 
+import { 
+  Link
+  
+   }  from "react-router-dom";
+
 const List = () => {
   return (
     <div className="list">
@@ -11,13 +16,16 @@ const List = () => {
       <div className="datatableTitle">
         
  <br />      
-<h1 style={{ textAlign:'center' }}>PRODUCTORES</h1>
+<h1 style={{ textAlign:'center',  }}>PRODUCTORES</h1>
 <hr  style={{ color: "black" }}></hr>
 
 <div className='container mt-5'>
 
 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-<button type="button" class="btn btn-primary btn-left" >Registrar productor</button>
+
+<Link  type="button" className="btn btn-primary btn-left me-md-2" to="/RegisterProductor">Registrar productor</Link>
+
+{/* <button type="button" class="btn btn-primary btn-left" >Registrar productor</button> */}
 </div>
 
 
@@ -63,6 +71,8 @@ const List = () => {
           </td>
           <td>Senior</td>
           <td>
+
+          
             <MDBBtn color='link' rounded size='sm'>
             <button type="button" class="btn btn-outline-warning mx-3">Edit</button>
             <button type="button" class="btn btn-outline-danger">Delete</button>

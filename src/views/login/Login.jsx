@@ -68,45 +68,6 @@ const handleLogin = ( e ) => {
   console.log(lEmail)
   console.log(lPassword)
 }
-
-
-
-  /*  const enviarUsuario =async (e) => {
-    
-
-    e.preventDefault()
-
-
-   
-    
-   console.log("Login",data)
-   console.log("Login",fetchUsuario)
-  
-    let filteredUsers =  data.filter(datas => {
-      
-      return datas.email === email 
-  });
-
-   fetchUsuario(email)
-  console.log(filteredUsers)
-  console.log("entro")
-
-
-  if (filteredUsers.length === 0) {
-    
-    setErrorMessage('Usuario o Contraseña incorrecta')
-			setTimeout(() => {
-					setErrorMessage(null)
-			}, 3000)
-		
-  }
-
-   
- 
-     
-    // window.location.href= `/Panel`
-   } 
- */
   
 
 

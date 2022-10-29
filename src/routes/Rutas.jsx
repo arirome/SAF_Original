@@ -11,7 +11,7 @@ import Info from '../views/informacion/Info';
 import Login from '../views/login/Login'; 
 import Panel from '../views/panel/Panel';
 import List from "../views/tabla/List";
-
+import RegisterProductor from "../views/registroProductor/Register";
 
 
 export default function Rutas  ()  {
@@ -23,6 +23,7 @@ export default function Rutas  ()  {
           <Route exact path="/Informacion" element={<Info/>}/>
           <Route exact path="/Panel" element={<Panel/>}/>
           <Route exact path="/Iniciosesion" element={<Login/>}/> 
+          <Route exact path="/RegisterProductor" element={<RegisterProductor/>}/> 
           <Route exact path="/" element={<Home/>}/>
           
           <Route path="users">

@@ -35,18 +35,18 @@ const Sidebar = () => {
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" style={{ color: "white" }}/>
-              <span style={{ color: "white" }}>Users</span>
+              <span style={{ color: "white" }}>Productores</span>
             </li>
           </Link>
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" style={{ color: "white" }} />
-              <span style={{ color: "white" }}>Products</span>
+              <span style={{ color: "white" }}>Productos</span>
             </li>
           </Link>
           <li>
             <CreditCardIcon className="icon" style={{ color: "white" }}/>
-            <span style={{ color: "white" }}>Orders</span>
+            <span style={{ color: "white" }}>Categorias</span>
           </li>
           
           <p className="title" style={{ color: "white" }}>USEFUL</p>
