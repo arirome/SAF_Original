@@ -1,8 +1,7 @@
 import {
   
-    FETCH_REGISTRO_SUCCESS,
-    FETCH_REGISTRO_ERROR,
-    CLEAR_REGISTRO
+    FETCH_REGISTROCATEGORIAS_SUCCESS,
+    FETCH_REGISTROCATEGORIAS_ERROR,
    
   
   } from "../tipos/types";
@@ -23,7 +22,7 @@ import {
   
     switch (action.type) {
     
-        case FETCH_REGISTRO_ERROR:
+        case FETCH_REGISTROCATEGORIAS_ERROR:
           return {
             loading:false,
             data:[],
@@ -35,7 +34,7 @@ import {
                 data: null,
                 error: ''
             } 
-        case  FETCH_REGISTRO_SUCCESS:
+        case  FETCH_REGISTROCATEGORIAS_SUCCESS:
         return {
           
           loading:false,
@@ -49,5 +48,3 @@ import {
         return state;
     }
   };
-  
-  

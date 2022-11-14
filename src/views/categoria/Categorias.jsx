@@ -1,4 +1,4 @@
-import "./list.scss";
+import "./categoria.scss";
 
 import Sidebar from "../../components/navbars/Navhorizontal";
 import {
@@ -17,25 +17,49 @@ import { connect, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Spinner from "../../layout/Spinner";
 
-import { verUsuarios} from "../../redux/actions/usuarios";
+import {getCategorias  } from "../../redux/actions/verCategorias";
 
-import Register from "../Registros/Register";
+import DataTable from 'react-data-table-component';
 
-const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
+const Categorias = ({getCategorias, categoria: {categorias: { categorias },loading,}}) => {
+
 
   useEffect(() => {
 
-    verUsuarios()
+    getCategorias()
     
    
   }, []); 
 
-  console.log( usuarios );
-  
+  console.log(categorias);
+/* 
+  const [{nombre}]= categorias
+
+console.log({nombre}) */
+
+/*   const data = [
+   {
+		"name":[{nombre}],
+	
+	},
+  ]
+ */
+
+
+  const columns = [
+    {
+      name: 'Name',
+      selector: 'name',
+      sortable: true,
+    },
+    
+  ];
 
   return (
     <>
-      {!loading ? (
+     {
+
+!loading ? (
         <>
           <div className="list">
             <Sidebar />
@@ -43,68 +67,46 @@ const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
               <div className="datatable">
                 <div className="datatableTitle">
                   <br />
-                  <h1 style={{ textAlign: "center" }}>USUARIOS</h1>
+                  <h1 style={{ textAlign: "center" }}>CATEGORIAS</h1>
                   <hr style={{ color: "black" }}></hr>
 
                   <div className="container mt-5">
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/RegisterUsuario">Registrar usuario</Link>
+                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/RegisterCategoria">Registrar Categorias</Link>
                     </div>
 
                     <br></br>
                     <br></br>
                     <br></br>
 
-                    <h1 style={{ textAlign: "center" }}>TABLA USUARIOS</h1>
+                    <h1 style={{ textAlign: "center" }}>TABLA CATEGORIAS</h1>
                     <hr style={{ color: "black" }}></hr>
 
                     <MDBTable align="middle" bordered borderColor="info">
                       <MDBTableHead>
                         <tr>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">Rol</th>
+                          <th scope="col">Categoria</th>
                           <th scope="col">Acciones</th>
                         </tr>
                       </MDBTableHead>
                       <MDBTableBody>
-                        {
-                          usuarios.map((usuario) => (
+                      {
+                          categorias.map((categoria) => (
                             <tr>
 
                               <td>
                                 <div className="d-flex align-items-center">
                                   <div className="ms-3">
                                     <p className="fw-bold mb-1">
-                                      {usuario.nombre}
+                                      {categoria.nombre}
                                     </p>
                                     <p className="text-muted mb-0"></p>
                                   </div>
                                 </div>
                               </td>
 
-                              <td>
-                                <div className="d-flex align-items-center">
-                                  <div className="ms-3">
-                                    <p className="fw-bold mb-1">
-                                      {usuario.correo}
-                                    </p>
-                                    <p className="text-muted mb-0"></p>
-                                  </div>
-                                </div>
-                              </td>
-
-                              <td>
-                                <div className="d-flex align-items-center">
-                                  <div className="ms-3">
-                                    <p className="fw-bold mb-1">
-                                      {usuario.rol}
-                                    </p>
-                                    <p className="text-muted mb-0"></p>
-                                  </div>
-                                </div>
-                              </td>
+                             
                              
 
                               <td>
@@ -126,26 +128,41 @@ const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
                             </tr>
                           ))
                         }
+                         
                       </MDBTableBody>
                     </MDBTable>
 
+
                  
+
+     {/*                <DataTable
+        title="Employees"
+        columns={columns}
+        data={data}
+        pagination
+        highlightOnHover
+      /> */}
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </>
-      ) : (
-        <Spinner />
-      )}
+    )  : (
+      <Spinner />
+    )}
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  usuario: state.usuario,
 
+const mapStateToProps = (state) => ({
+  categoria: state.categoria,
+ 
 });
 
-export default connect(mapStateToProps, { verUsuarios })(List);
+export default connect(mapStateToProps, {
+  
+  getCategorias,
+})(Categorias);

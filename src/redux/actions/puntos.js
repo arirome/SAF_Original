@@ -1,33 +1,28 @@
-import { FETCH_REGISTRO_SUCCESS, FETCH_REGISTRO_ERROR,CLEAR_REGISTRO } from "../tipos/types";
+import { FETCH_REGISTROPUNTOS_SUCCESS, FETCH_REGISTROPUNTOS_ERROR } from "../tipos/types";
 
-import { fetchSinToken } from "../../helpers/fetch";
+import { fetchSinToken,fetchConToken } from "../../helpers/fetch";
 
-export const fetchRegistroSuccess = (Usuario) => {
+export const fetchPuntosSuccess = (Usuario) => {
   return {
-    type: FETCH_REGISTRO_SUCCESS,
+    type: FETCH_REGISTROPUNTOS_SUCCESS,
     payload: Usuario,
   };
 };
 
-export const fetchRegistroError = (error) => {
+export const fetchPuntosError = (error) => {
   return {
-    type: FETCH_REGISTRO_ERROR,
+    type: FETCH_REGISTROPUNTOS_ERROR,
     payload: error,
   };
 };
 
-export const clearRegistro = () => {
-  return({
-      type: CLEAR_REGISTRO,
-      payload: null
-  })
-}
 
-export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
+export const fetchRegistroPuntos = (nombre, departamento, barrio, descripcion) => {
+
   return async (dispatch) => {
-    const resp = await fetchSinToken(
-      "api/v1/auth/registro",
-      { correo, password, nombre, rol },
+    const resp = await fetchConToken(
+      "api/v1/puntos",
+      { nombre, departamento, barrio, descripcion },
       "POST"
     );
     const body = await resp.json();
@@ -35,15 +30,14 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
     console.log("hola");
 
     if (resp.ok) {
-      localStorage.setItem("token", body.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
+      
+        
 
       dispatch(
-        fetchRegistroSuccess({
+        fetchPuntosSuccess({
           uid: body.uid,
-          correo: body.correo,
+          nombre: body.nombre,
         },
-        
      
         Swal.fire({
           position: "center",
@@ -61,7 +55,9 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
 
     
     } else {
+
       console.log("hola");
+
       Swal.fire({
         position: "center",
         icon: "error",
@@ -69,10 +65,7 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
         showConfirmButton: false,
         timer: 1000,
       });
+
     }
   };
 };
-
-
-
-

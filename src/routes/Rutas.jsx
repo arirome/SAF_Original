@@ -11,8 +11,15 @@ import Info from '../views/informacion/Info';
 import Login from '../views/login/Login'; 
 import Panel from '../views/panel/Panel';
 import List from "../views/tabla/List";
-import RegisterProductor from "../views/registroProductor/Register";
+import RegisterUsuario from "../views/Registros/Register";
+import RegisterCategoria from "../views/Registros/RegisterCategorias";
+import RegisterProductos from "../views/Registros/RegisterProductos";
+import Categorias from '../views/categoria/Categorias';
+import Productos from '../views/productos/Productos';
+import PuntosVentas from '../views/puntosDeVentas/Puntos';
+import RegisterPuntos from '../views/Registros/RegisterPuntos';
 
+import Profile from '../views/profile/Profile';
 
 export default function Rutas  ()  {
   return (
@@ -23,7 +30,10 @@ export default function Rutas  ()  {
           <Route exact path="/Informacion" element={<Info/>}/>
           <Route exact path="/Panel" element={<Panel/>}/>
           <Route exact path="/Iniciosesion" element={<Login/>}/> 
-          <Route exact path="/RegisterProductor" element={<RegisterProductor/>}/> 
+          <Route exact path="/RegisterUsuario" element={<RegisterUsuario/>}/> 
+          <Route exact path="/RegisterCategoria" element={<RegisterCategoria/>}/> 
+          <Route exact path="/RegisterProductos" element={<RegisterProductos/>}/> 
+          <Route exact path="/RegisterPuntos" element={<RegisterPuntos/>}/> 
           <Route exact path="/" element={<Home/>}/>
           
           <Route path="users">
@@ -33,9 +43,19 @@ export default function Rutas  ()  {
             </Route>
 
           <Route path="/products">
-              <Route index element={<List />} />
-             {/*  <Route path=":productId" element={<Single />} /> */}
-              
+              <Route index element={<Productos/>} />   
+            </Route>
+
+            <Route path="/Categorias">
+              <Route index element={<Categorias/>} />   
+            </Route>
+
+            <Route path="/Puntos">
+              <Route index element={<PuntosVentas/>} />   
+            </Route>
+
+            <Route path="/:id">
+              <Route index element={<Profile/>} />   
             </Route>
 
         </Routes>

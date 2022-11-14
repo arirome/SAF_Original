@@ -1,4 +1,4 @@
-import "./list.scss";
+import "./productos.scss";
 
 import Sidebar from "../../components/navbars/Navhorizontal";
 import {
@@ -17,25 +17,21 @@ import { connect, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import Spinner from "../../layout/Spinner";
 
-import { verUsuarios} from "../../redux/actions/usuarios";
+import { getProductos } from "../../redux/actions/verProductos";
 
-import Register from "../Registros/Register";
-
-const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
+const Productos = ({getProductos, producto: {productos: { productos },loading,}}) => {
 
   useEffect(() => {
+    getProductos();
+  }, []);
 
-    verUsuarios()
-    
-   
-  }, []); 
-
-  console.log( usuarios );
-  
+  console.log(productos)
 
   return (
     <>
-      {!loading ? (
+    { 
+
+!loading ? (
         <>
           <div className="list">
             <Sidebar />
@@ -43,41 +39,53 @@ const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
               <div className="datatable">
                 <div className="datatableTitle">
                   <br />
-                  <h1 style={{ textAlign: "center" }}>USUARIOS</h1>
+                  <h1 style={{ textAlign: "center" }}>PRODUCTOS</h1>
                   <hr style={{ color: "black" }}></hr>
 
                   <div className="container mt-5">
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/RegisterUsuario">Registrar usuario</Link>
+                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/RegisterProductos">Registrar Productos</Link>
                     </div>
 
                     <br></br>
                     <br></br>
                     <br></br>
 
-                    <h1 style={{ textAlign: "center" }}>TABLA USUARIOS</h1>
+                    <h1 style={{ textAlign: "center" }}>TABLA PRODUCTOS</h1>
                     <hr style={{ color: "black" }}></hr>
 
                     <MDBTable align="middle" bordered borderColor="info">
                       <MDBTableHead>
                         <tr>
-                          <th scope="col">Nombre</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">Rol</th>
+                          <th scope="col"> </th>
+                          <th scope="col">Productos</th>
+                          <th scope="col">Precio</th> 
+                          <th scope="col">Categoria</th>
                           <th scope="col">Acciones</th>
                         </tr>
                       </MDBTableHead>
                       <MDBTableBody>
-                        {
-                          usuarios.map((usuario) => (
+                      {
+                          productos.map((producto) => (
                             <tr>
+                               <td>
+                                <div className="d-flex align-items-center">
+                                  <div className="ms-3">
+                                    <p className="fw-bold mb-1">
+                                    {producto.img}
+                                    </p>
+                                    <p className="text-muted mb-0"></p>
+                                  </div>
+                                </div>
+                              </td>
+
 
                               <td>
                                 <div className="d-flex align-items-center">
                                   <div className="ms-3">
                                     <p className="fw-bold mb-1">
-                                      {usuario.nombre}
+                                      {producto.nombre}
                                     </p>
                                     <p className="text-muted mb-0"></p>
                                   </div>
@@ -88,24 +96,27 @@ const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
                                 <div className="d-flex align-items-center">
                                   <div className="ms-3">
                                     <p className="fw-bold mb-1">
-                                      {usuario.correo}
+                                      {producto.precio}
                                     </p>
                                     <p className="text-muted mb-0"></p>
                                   </div>
                                 </div>
                               </td>
 
+                    
+                              
+
                               <td>
                                 <div className="d-flex align-items-center">
                                   <div className="ms-3">
                                     <p className="fw-bold mb-1">
-                                      {usuario.rol}
+                                      {producto.categoria.nombre}
                                     </p>
                                     <p className="text-muted mb-0"></p>
                                   </div>
                                 </div>
                               </td>
-                             
+
 
                               <td>
                                 <MDBBtn color="link" rounded size="sm">
@@ -126,26 +137,31 @@ const List = ({verUsuarios, usuario: { usuarios: { usuarios },loading,}}) => {
                             </tr>
                           ))
                         }
+                         
                       </MDBTableBody>
                     </MDBTable>
-
-                 
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </>
-      ) : (
-        <Spinner />
-      )}
+
+
+) : (
+  <Spinner />
+)
+     }
     </>
   );
 };
 
 const mapStateToProps = (state) => ({
-  usuario: state.usuario,
-
+  producto: state.producto,
+ 
 });
 
-export default connect(mapStateToProps, { verUsuarios })(List);
+export default connect(mapStateToProps, {
+  
+  getProductos,
+})(Productos);

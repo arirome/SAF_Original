@@ -1,33 +1,28 @@
-import { FETCH_REGISTRO_SUCCESS, FETCH_REGISTRO_ERROR,CLEAR_REGISTRO } from "../tipos/types";
+import { FETCH_REGISTROPRODUCTOS_SUCCESS, FETCH_REGISTROPRODUCTOS_ERROR } from "../tipos/types";
 
-import { fetchSinToken } from "../../helpers/fetch";
+import { fetchConToken } from "../../helpers/fetch";
 
-export const fetchRegistroSuccess = (Usuario) => {
+export const fetchProductosSuccess = (Usuario) => {
   return {
-    type: FETCH_REGISTRO_SUCCESS,
+    type: FETCH_REGISTROPRODUCTOS_SUCCESS,
     payload: Usuario,
   };
 };
 
-export const fetchRegistroError = (error) => {
+export const fetchProductosError = (error) => {
   return {
-    type: FETCH_REGISTRO_ERROR,
+    type: FETCH_REGISTROPRODUCTOS_ERROR,
     payload: error,
   };
 };
 
-export const clearRegistro = () => {
-  return({
-      type: CLEAR_REGISTRO,
-      payload: null
-  })
-}
 
-export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
+export const fetchRegistroProducto = (nombre,precio,categoria,descripcion,proveedor,img) => {
+
   return async (dispatch) => {
-    const resp = await fetchSinToken(
-      "api/v1/auth/registro",
-      { correo, password, nombre, rol },
+    const resp = await fetchConToken(
+      "api/v1/productos",
+      { nombre,precio,categoria,descripcion,proveedor,img },
       "POST"
     );
     const body = await resp.json();
@@ -35,15 +30,14 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
     console.log("hola");
 
     if (resp.ok) {
-      localStorage.setItem("token", body.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
+      
+        
 
       dispatch(
-        fetchRegistroSuccess({
+        fetchProductosSuccess({
           uid: body.uid,
-          correo: body.correo,
+          nombre: body.nombre,
         },
-        
      
         Swal.fire({
           position: "center",
@@ -61,7 +55,9 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
 
     
     } else {
+
       console.log("hola");
+
       Swal.fire({
         position: "center",
         icon: "error",
@@ -69,10 +65,9 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
         showConfirmButton: false,
         timer: 1000,
       });
+
     }
   };
 };
 
-
-
-
+export default fetchRegistroProducto;

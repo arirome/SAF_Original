@@ -13,9 +13,15 @@ import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { fetchUsuario } from "../../redux/actions/login";
 
-const Sidebar = () => {
+
+const Sidebar = ({ data} ) =>{
   
+
+ console.log(data)
+
   return (
     <div className="sidebar" style={{backgroundColor:'rgba(76.85625672340393, 187.63121098279953, 246.60922944545746, 1)' }}  >
       <div className="top">
@@ -35,20 +41,33 @@ const Sidebar = () => {
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" style={{ color: "white" }}/>
-              <span style={{ color: "white" }}>Productores</span>
+              <span style={{ color: "white" }}>Usuarios</span>
             </li>
           </Link>
+
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" style={{ color: "white" }} />
               <span style={{ color: "white" }}>Productos</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" style={{ color: "white" }}/>
-            <span style={{ color: "white" }}>Categorias</span>
-          </li>
+
+          <Link to="/Categorias" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" style={{ color: "white" }} />
+              <span style={{ color: "white" }}>Categorias</span>
+            </li>
+          </Link>
+
+          <Link to="/Puntos" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" style={{ color: "white" }} />
+              <span style={{ color: "white" }}>Puntos de venta</span>
+            </li>
+          </Link>
+
           
+
           <p className="title" style={{ color: "white" }}>USEFUL</p>
           
           <li>
@@ -57,10 +76,15 @@ const Sidebar = () => {
           </li>
         
           <p className="title" style={{ color: "white" }}>USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" style={{ color: "white" }} />
-            <span style={{ color: "white" }}>Profile</span>
-          </li>
+         
+          <Link to={`/${data.payload.usuario.uid}`}  /* to="/id" */ style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" style={{ color: "white" }} />
+              <span style={{ color: "white" }}>Profile </span>
+            </li>
+          </Link>
+
+
           <li>
             <ExitToAppIcon className="icon" style={{ color: "white" }}/>
             <span style={{ color: "white" }}>Logout</span>
@@ -72,4 +96,12 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+
+//SACAR DEL ESTADO
+const mapStateToProps = (state) => ({
+  data: state.buscadorUsuario.data,
+});
+
+//{login} LO PASAMOS ARRIBA
+//connect ES EL QUE SE ENCARGA DE CONECTAR LAS ACCIONES CON EL COMPONENTE
+export default connect(mapStateToProps, { fetchUsuario })(Sidebar);
