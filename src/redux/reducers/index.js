@@ -4,7 +4,7 @@ import { combineReducers } from "redux";
 
 import  buscadorUsuario  from './login';
 import  registro  from './registro';
-import usuario from "./usuarios";
+import usuario from "./verUsuarios";
 import productos from "./productos";
 import categoria from "./verCategorias";
 import producto from "./verProductos";

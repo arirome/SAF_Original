@@ -80,7 +80,7 @@ const Widget = ({ type }) => {
   }
 
   return (
-    <div className="widget card border-info">
+    <div className="widget " style={{	border: "1px solid #045694"}}>
       <div className="left"  >
         <span className="title" style={{ color: "black" }}>{data.title}</span>
         <span className="counter">

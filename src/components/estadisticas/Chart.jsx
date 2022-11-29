@@ -20,7 +20,7 @@ const data = [
 /* #8fb5c4 */
 const Chart = ({ aspect, title }) => {
   return (
-    <div className="chart card border-info">
+    <div className="chart " style={{	border: "1px solid #045694"}} >
       <div className="title">{title}</div>
       <ResponsiveContainer width="100%" aspect={aspect} >
         <AreaChart
@@ -32,8 +32,8 @@ const Chart = ({ aspect, title }) => {
         >
           <defs>
             <linearGradient id="total" x1="0" y1="0" x2="0" y2="1" >
-              <stop offset="5%" stopColor="#5dadd4" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#5dadd4" stopOpacity={0} />
+              <stop offset="5%" stopColor="#045694" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#045694" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" stroke="gray" />
@@ -42,7 +42,7 @@ const Chart = ({ aspect, title }) => {
           <Area
             type="monotone"
             dataKey="Total"
-            stroke="#5dadd4"
+            stroke="#045694"
             fillOpacity={1}
             fill="url(#total)"
           />

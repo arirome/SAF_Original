@@ -19,7 +19,7 @@ export default function Nav () {
     <div className="d-grid gap-2 d-md-flex justify-content-md-end">
     <Link  type="button" className="btn btn-outline-primary me-md-2" to="/Informacion">Informacion</Link>
     <Link  type="button" className="btn btn-outline-primary me-md-2" to="/Iniciosesion">Inicio sesion</Link>
-    <Link  type="button" className="btn btn-outline-primary me-md-2" to="">Ver catalogo</Link>
+    <Link  type="button" className="btn btn-outline-primary me-md-2" to="/Catalogo">Ver catalogo</Link>
 </div>
   </div>
 </nav>

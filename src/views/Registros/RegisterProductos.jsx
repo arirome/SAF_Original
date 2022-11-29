@@ -10,11 +10,11 @@ import { getCategorias } from "../../redux/actions/verCategorias";
 import { fetchRegistroProducto } from "../../redux/actions/productos";
 
 import Spinner from "../../layout/Spinner";
-import logoPost from "../../assets/img/chem.jpg";
+import logoPost from "../../assets/img/fondo2.jpg";
 
 import { postImage} from "../../helpers/subirIMG";
 
-import { verUsuarios} from "../../redux/actions/usuarios";
+import { verUsuarios} from "../../redux/actions/verUsuarios"
 
 const RegisterProductor = ({fetchRegistroProducto , getCategorias, categoria: {categorias: { categorias },loading,},verUsuarios, usuario: { usuarios: { usuarios }}}) => {
 

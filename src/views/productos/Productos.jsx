@@ -19,11 +19,17 @@ import Spinner from "../../layout/Spinner";
 
 import { getProductos } from "../../redux/actions/verProductos";
 
+import { Image, Transformation } from "cloudinary-react";
+
 const Productos = ({getProductos, producto: {productos: { productos },loading,}}) => {
+
+  //const [encontrado, setEncontrado] = useState();
 
   useEffect(() => {
     getProductos();
   }, []);
+
+
 
   console.log(productos)
 
@@ -73,7 +79,22 @@ const Productos = ({getProductos, producto: {productos: { productos },loading,}}
                                 <div className="d-flex align-items-center">
                                   <div className="ms-3">
                                     <p className="fw-bold mb-1">
-                                    {producto.img}
+                                    <Image
+                                      className="cellImg"
+                                      cloudName="dawjd5cx8"
+                                      publicId={producto.img}
+                                      alt="avatar"
+                                    >
+                                      <Transformation
+                                        height="100"
+                                        width="100"
+                                        //radius="max"
+                                        aspectRatio="1.5"
+                                        crop="fill"
+                                      />
+                                    </Image>
+
+                                    {/* {producto.img} */}
                                     </p>
                                     <p className="text-muted mb-0"></p>
                                   </div>

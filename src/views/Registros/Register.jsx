@@ -91,7 +91,7 @@ const Registro = ({ fetchRegistroUsuario}) => {
           >
             <option>Selecciona un rol</option>
             <option value="admin">admin</option>
-            <option value="user">user</option>
+            <option value="productor">productor</option>
             <option value="inventario">inventario</option>
             <option value="cajero">cajero</option>
           </select>

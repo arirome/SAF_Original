@@ -40,62 +40,42 @@ const Profile = () => {
         <>
            <div className="single ">
       <Sidebar />
-      <div className="singleContainer  ">
-        <div className="top">
-          <div className="left card border-info ">
-
-         
-            <div className="item ">
-              <img
-                src="src\assets\img\chem.jpg"
-                alt=""
-                className="itemImg"
-              />
-           
-            
-            <div className="details ">
-                <h1 className="itemTitle">JANE</h1>
-                <div className="detailItem">
-                  <span className="itemKey">Email:</span>
-                  <span className="itemValue">janedoe@gmail.com</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Phone:</span>
-                  <span className="itemValue">+1 2345 67 89</span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
-                  </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
-                </div>
-                <button
-                                    type="button"
-                                    class="btn btn-outline-warning mx-3"
-                                  >
-                                    Edit
-                                  </button>
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger"
-                                  >
-                                    Delete
-                                  </button>
-
-
-                                  
-              </div>
-              
-             
-            </div>
-           
-          </div>
-         
+      <div className="singleContainer">
+      <div class="containersingle">
+  <header>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+  </header>
+  <main>
+    <div class="row">
+      <div class="left col-lg-4">
+        <div class="photo-left">
+          <img class="photo" src="src\assets\img\chem.jpg"/>
+          
         </div>
+        <h4 class="name">Jane Doe</h4>
+        <p class="info">UI/UX Designer</p>
+        <p class="info">jane.doe@gmail.com</p>
+        <div class="stats row">
+          
+        
+          
+        </div>
+       
+    
+      </div>
+      <div class="right col-lg-8">
+        <ul class="nav">
+        
+          <li>About</li>
+        </ul>
+        
+        <div class="row gallery">
+        <p class="desc">Hi ! My name is Jane Doe. I'm a UI/UX Designer from Paris, in France. I really enjoy photography and mountains.</p>
+        </div>
+      </div>
+      </div>
+  </main>
+</div>
         
       </div>
       

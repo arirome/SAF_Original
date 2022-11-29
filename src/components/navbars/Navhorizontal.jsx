@@ -23,7 +23,7 @@ const Sidebar = ({ data} ) =>{
  console.log(data)
 
   return (
-    <div className="sidebar" style={{backgroundColor:'rgba(76.85625672340393, 187.63121098279953, 246.60922944545746, 1)' }}  >
+    <div className="sidebar" style={{backgroundColor:'#045694' }}  >
       <div className="top">
         <Link to="/panel" style={{ textDecoration: "none" }}>
           <span style={{ color: "white" }} className="logo">ADMIN</span>
@@ -32,11 +32,7 @@ const Sidebar = ({ data} ) =>{
       <hr />
       <div className="center">
         <ul>
-          <p className="title" style={{ color: "white" }}>MAIN</p>
-          <li>
-            <DashboardIcon className="icon" style={{ color: "white" }} />
-            <span style={{ color: "white" }}>Dashboard</span>
-          </li>
+          
           <p className="title" style={{ color: "white" }}>LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -68,12 +64,7 @@ const Sidebar = ({ data} ) =>{
 
           
 
-          <p className="title" style={{ color: "white" }}>USEFUL</p>
-          
-          <li>
-            <NotificationsNoneIcon className="icon" style={{ color: "white" }} />
-            <span style={{ color: "white" }}>Notifications</span>
-          </li>
+         
         
           <p className="title" style={{ color: "white" }}>USER</p>
          

@@ -18,6 +18,7 @@ import Categorias from '../views/categoria/Categorias';
 import Productos from '../views/productos/Productos';
 import PuntosVentas from '../views/puntosDeVentas/Puntos';
 import RegisterPuntos from '../views/Registros/RegisterPuntos';
+import Catalogo from '../views/catalogo/catalogo';
 
 import Profile from '../views/profile/Profile';
 
@@ -27,6 +28,7 @@ export default function Rutas  ()  {
     <Router>
       
         <Routes>
+        <Route exact path="/Catalogo" element={<Catalogo/>}/> 
           <Route exact path="/Informacion" element={<Info/>}/>
           <Route exact path="/Panel" element={<Panel/>}/>
           <Route exact path="/Iniciosesion" element={<Login/>}/> 

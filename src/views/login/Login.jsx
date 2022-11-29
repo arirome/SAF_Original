@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import "./login.css";
+import "./login.css"
 
 import { useForm } from "../../components/hooks/useForm";
 
@@ -80,74 +80,59 @@ if (enviarDatos==true) {
   };
 
   return (
-    <div class="container-fluid2 ps-md-0">
-      <div class="row g-0">
-        <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-        <div class="col-md-8 col-lg-6">
-          <div class="login d-flex align-items-center py-5">
-            <div class="container">
-              <div class="row">
-                <div class="col-md-9 col-lg-8 mx-auto">
-                  <h3 class="login-heading mb-2">BIENVENIDO</h3>
-                  <hr />
-                  <br />
+   <>
+   <div class="containerLogin">
+   <div class="wrapperLogin fadeInDown">
+  <div id="formContent">
+ <br/>
 
-                  <form onSubmit={handleLogin}>
-                    <div class="form-floating mb-3">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Correo"
-                        name="correo"
-                        value={correo}
-                        onChange={handleLoginInputChange}
-                      />
 
-                      <input
-                        type="password"
-                        className="form-control"
-                        placeholder="Contraseña"
-                        name="password"
-                        value={password}
-                        onChange={handleLoginInputChange}
-                      />
-                    </div>
+   
+ <div class="fadeIn first">
+  <img
+                src="src\assets\img\keys.png"
+                alt=""
+                className="itemImg"
+              />
+    </div> 
+           
+    <h1 class="active"> BIENVENIDO </h1>
 
-                    <div class="form-check mb-3">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        value=""
-                        id="rememberPasswordCheck"
-                      />
-                      <label
-                        class="form-check-label"
-                        for="rememberPasswordCheck"
-                      >
-                        Remember password
-                      </label>
-                    </div>
-                    <br />
-                    <div class="d-grid">
-                      <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        sx={{ mt: 3, mb: 2 }}
-                      >
-                        Sign In
-                      </Button>
-                    </div>
+  
+    <br/>
+    <br/>
+    <br/>
+   
+    <form onSubmit={handleLogin}>
+      <input type="text"
+       id="login" class="fadeIn second" 
+       name="correo"
+      value={correo}
+       onChange={handleLoginInputChange}
+                        
+        placeholder="correo"
+        />
 
-                    <p style={{ color: "red" }}>{errorMessage}</p>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <input 
+      type="text" 
+      id="password"
+       class="fadeIn third" 
+       name="password" 
+       placeholder="Contraseña"
+     
+       value={password}
+       onChange={handleLoginInputChange}
+       />
+      <br/>
+    <br/>
+      <input type="submit"   id="submit" class="fadeIn fourth" value="Enviar"/>
+    </form>
+
+  
+  </div>
+</div>
+</div>
+   </>
   );
 };
 
